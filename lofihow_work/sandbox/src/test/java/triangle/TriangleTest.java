@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class TriangleTest {
     @Test
     void canCalculatePerimeter() {
-        double result = Triangle.TrianglePerimeter(3);
+        double result = Triangle.TrianglePerimeter(3, 3,3);
         Assertions.assertEquals(9, result);
     }
     @Test

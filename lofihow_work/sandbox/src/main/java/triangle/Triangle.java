@@ -3,7 +3,7 @@ package triangle;
 public class Triangle {
     public static void main(String[] args) {
     printTriangleArea(3.6,3.2,3.7);
-    printTrianglePerimeter(3.0);
+    printTrianglePerimeter(3.0, 3.0, 3.0);
 
 }
 
@@ -12,13 +12,13 @@ public class Triangle {
         System.out.println(text);
     }
 
-    static void printTrianglePerimeter(double sides) {
-        String text2 = String.format("Периметр треугольника со сторонами %.2f = %.2f ", sides, TrianglePerimeter(sides));
+    static void printTrianglePerimeter(double sideA, double sideB, double sideC) {
+        String text2 = String.format("Периметр треугольника со сторонами %.2f + %.2f + %.2f = %.2f", sideA, sideB, sideB, TrianglePerimeter(sideA, sideB,sideC));
         System.out.println(text2);
     }
 
-    public static double TrianglePerimeter(double sides) {
-        return 3 * sides;
+    public static double TrianglePerimeter(double sideA, double sideB, double sideC) {
+        return sideA + sideB + sideC;
     }
 
     public static double triangleArea(double a, double b, double c) {
