@@ -4,10 +4,17 @@ public class triangle {
     public double sideC;
 
     public triangle(double sideA, double sideB, double sideC) {
+        if (sideA <= 0 || sideB <= 0 || sideC <= 0) {
+            throw new IllegalArgumentException("Длина стороны треугольника должна быть положительны.");
+        }
+        if (sideA + sideB <= sideC || sideA + sideC <= sideB || sideB + sideC <= sideA) {
+            throw new IllegalArgumentException("Стороны не могут образовать треугольник");
+        }
         this.sideA = sideA;
         this.sideB = sideB;
         this.sideC = sideC;
     }
+
     public double trianglePerimeter() {
         return sideA + sideB + sideC;
     }
