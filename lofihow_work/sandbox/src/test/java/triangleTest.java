@@ -30,4 +30,10 @@ public class triangleTest {
         } catch (IllegalArgumentException exception) {
         }
     }
+    @Test
+    void TestEquality(){
+        var s1 = new triangle(5,4,3);
+        var s2 = new triangle(4,3,5);
+        Assertions.assertEquals(s1, s2);
+    }
 }
