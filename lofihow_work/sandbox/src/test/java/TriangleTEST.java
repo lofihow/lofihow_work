@@ -1,23 +1,23 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class triangleTest {
+public class TriangleTEST {
     @Test
     void canCalculatePerimeter() {
-        var A = new triangle(3, 3, 3);
+        var A = new Triangle(3, 3, 3);
         Assertions.assertEquals(9, A.trianglePerimeter());
     }
 
     @Test
     void canCalculateArea() {
-        var B = new triangle(3, 3, 3);
+        var B = new Triangle(3, 3, 3);
         Assertions.assertEquals(3.897114317029974, B.triangleArea());
     }
 
     @Test
     public void testTriangleWithNegativeSide() {
         try {
-            new triangle(-1, 2, 3);
+            new Triangle(-1, 2, 3);
             Assertions.fail();
         } catch (IllegalArgumentException exception) {
         }
@@ -25,15 +25,15 @@ public class triangleTest {
     @Test
     public void testTriangleWithBigSide() {
         try {
-            new triangle(10, 2, 3);
+            new Triangle(10, 2, 3);
             Assertions.fail();
         } catch (IllegalArgumentException exception) {
         }
     }
     @Test
     void TestEquality(){
-        var s1 = new triangle(5,4,3);
-        var s2 = new triangle(4,3,5);
+        var s1 = new Triangle(5,4,3);
+        var s2 = new Triangle(4,3,5);
         Assertions.assertEquals(s1, s2);
     }
 
@@ -43,8 +43,17 @@ void testEquality2(){
     var a = 2;
     var b = 3;
     var c = 4;
-    var triangle2 = new triangle(a, b, c);
-    var triangle1 = new triangle(a, c, b);
+    var triangle2 = new Triangle(a, b, c);
+    var triangle1 = new Triangle(a, c, b);
+    Assertions.assertEquals(triangle2, triangle1);
+}
+@Test
+void testEquality3(){
+    var a = 2;
+    var b = 3;
+    var c = 4;
+    var triangle2 = new Triangle(a, b, c);
+    var triangle1 = new Triangle(b, a, c);
     Assertions.assertEquals(triangle2, triangle1);
 }
 }
