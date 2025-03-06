@@ -32,8 +32,10 @@ public class GroupDeleteTest {
     @Test
     public void CanDeleteGroup() {
         if (!isElementPresent(By.name("selected[]"))) {
-            System.out.println("Группа не найдена. Должна существовать хотя бы одна группа");
-            return;
+            CreatGroup();
+        }
+        if (!isElementPresent(By.name("new"))) {
+            driver.findElement(By.linkText("groups")).click();
         }
         driver.findElement(By.name("selected[]")).click();
         driver.findElement(By.name("delete")).click();
@@ -47,6 +49,19 @@ public class GroupDeleteTest {
         } catch (NoSuchElementException exception) {
             return false;
         }
+    }
+
+    private void CreatGroup() {
+        driver.findElement(By.linkText("groups")).click();
+        driver.findElement(By.name("new")).click();
+        driver.findElement(By.name("group_name")).click();
+        driver.findElement(By.name("group_name")).sendKeys("2");
+        driver.findElement(By.name("group_header")).click();
+        driver.findElement(By.name("group_header")).sendKeys("1");
+        driver.findElement(By.name("group_footer")).click();
+        driver.findElement(By.name("group_footer")).sendKeys("1");
+        driver.findElement(By.name("submit")).click();
+        driver.findElement(By.linkText("groups")).click();
     }
 }
 

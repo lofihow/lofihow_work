@@ -2,6 +2,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.Dimension;
@@ -31,7 +32,9 @@ public class GroupCreationTest {
 
     @Test
     public void CanCreateGroup() {
-        driver.findElement(By.linkText("groups")).click();
+        if (!isElementPresent(By.name("new"))) {
+            driver.findElement(By.linkText("groups")).click();
+        }
         driver.findElement(By.name("new")).click();
         driver.findElement(By.name("group_name")).click();
         driver.findElement(By.name("group_name")).sendKeys("2");
@@ -41,5 +44,14 @@ public class GroupCreationTest {
         driver.findElement(By.name("group_footer")).sendKeys("1");
         driver.findElement(By.name("submit")).click();
         driver.findElement(By.linkText("groups")).click();
+    }
+
+    private boolean isElementPresent(By locator) {
+        try {
+            driver.findElement(locator);
+            return true;
+        } catch (NoSuchElementException exception) {
+            return false;
+        }
     }
 }
