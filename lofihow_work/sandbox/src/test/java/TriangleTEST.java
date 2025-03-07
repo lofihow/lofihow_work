@@ -47,13 +47,22 @@ void testEquality2(){
     var triangle1 = new Triangle(a, c, b);
     Assertions.assertEquals(triangle2, triangle1);
 }
-@Test
-void testEquality3(){
-    var a = 2;
-    var b = 3;
-    var c = 4;
-    var triangle2 = new Triangle(a, b, c);
-    var triangle1 = new Triangle(b, a, c);
-    Assertions.assertEquals(triangle2, triangle1);
-}
+    @Test
+    void testEquality3(){
+        var a = 2;
+        var b = 3;
+        var c = 4;
+        var triangle2 = new Triangle(a, b, c);
+        var triangle1 = new Triangle(b, a, c);
+        Assertions.assertEquals(triangle2, triangle1);
+    }
+    @Test
+    void testEquality6(){
+        var a = 2;
+        var b = 3;
+        var c = 4;
+        var triangle = new Triangle(a, b, c);
+        var triangle1 = new Triangle(c, b, a);
+        Assertions.assertEquals(triangle, triangle1);
+    }
 }

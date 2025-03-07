@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Triangle {
@@ -36,30 +37,13 @@ public class Triangle {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Triangle triangle = (Triangle) o;
-        return (Double.compare(sideA, triangle.sideA) == 0 &&
-                Double.compare(sideB, triangle.sideB) == 0 &&
-                Double.compare(sideC, triangle.sideC) == 0) ||
-                (Double.compare(sideA, triangle.sideB) == 0 &&
-                        Double.compare(sideB, triangle.sideC) == 0 &&
-                        Double.compare(sideC, triangle.sideA) == 0) ||
-                (Double.compare(sideA, triangle.sideC) == 0 &&
-                        Double.compare(sideB, triangle.sideA) == 0 &&
-                        Double.compare(sideC, triangle.sideB) == 0) ||
-                (Double.compare(sideB, triangle.sideA) == 0 &&
-                        Double.compare(sideC, triangle.sideB) == 0 &&
-                        Double.compare(sideA, triangle.sideC) == 0) ||
-                (Double.compare(sideB, triangle.sideC) == 0 &&
-                        Double.compare(sideC, triangle.sideA) == 0 &&
-                        Double.compare(sideA, triangle.sideB) == 0) ||
-                (Double.compare(sideC, triangle.sideA) == 0 &&
-                        Double.compare(sideA, triangle.sideB) == 0 &&
-                        Double.compare(sideB, triangle.sideC) == 0) ||
-                (Double.compare(sideC, triangle.sideB) == 0 &&
-                        Double.compare(sideA, triangle.sideA) == 0 &&
-                        Double.compare(sideB, triangle.sideC) == 0) ||
-                (Double.compare(sideC, triangle.sideC) == 0 &&
-                        Double.compare(sideA, triangle.sideB) == 0 &&
-                        Double.compare(sideB, triangle.sideA) == 0);
+        double[] sides1 = {sideA, sideB, sideC};
+        double[] sides2 = {triangle.sideA, triangle.sideB, triangle.sideC};
+
+        Arrays.sort(sides1);
+        Arrays.sort(sides2);
+
+        return Arrays.equals(sides1, sides2);
 
     }
 
