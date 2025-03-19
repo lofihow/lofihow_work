@@ -14,6 +14,8 @@ public class ApplicationManager  {
 
     private GroupHelper group;
 
+    private ContactHelper contact;
+
 
    public void init(String browser) {
         if ("firefox".equals(browser)){
@@ -42,6 +44,13 @@ public class ApplicationManager  {
            group = new GroupHelper(this);
        }
        return group;
+    }
+
+    public ContactHelper contact(){
+        if (contact == null){
+            contact = new ContactHelper(this);
+        }
+        return contact;
     }
 
 

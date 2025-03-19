@@ -19,4 +19,15 @@ public class HelperBase {
         openGroupsPage();
         return manager.isElementPresent(By.name("selected[]"));
     }
+
+    public boolean isContactPresent(){
+        openContactPage();
+        return manager.isElementPresent(By.name("selected[]"));
+    }
+
+    public void openContactPage() {
+        if (!manager.isElementPresent(By.name("new"))) {
+            manager.driver.findElement(By.linkText("home")).click();
+        }
+    }
 }

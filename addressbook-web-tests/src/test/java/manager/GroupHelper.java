@@ -8,7 +8,7 @@ public class GroupHelper extends HelperBase {
         super(manager);
     }
 
-    public void CreateGroup() {
+    public void creategroup() {
         openGroupsPage();
         manager.driver.findElement(By.linkText("groups")).click();
         manager.driver.findElement(By.name("new")).click();
