@@ -29,9 +29,6 @@ public class TestBase {
     }
 
 
-    @AfterEach
-    void tearDown() {
-        app.session().logout();
-    }
+
 
 }

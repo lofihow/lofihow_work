@@ -17,8 +17,5 @@ public class LoginHelper extends HelperBase {
         manager.driver.findElement(By.cssSelector("input:nth-child(7)")).click();
     }
 
-    public void logout() {
-        manager.driver.findElement(By.linkText("Logout")).click();
-        manager.driver.quit();
+
     }
-}

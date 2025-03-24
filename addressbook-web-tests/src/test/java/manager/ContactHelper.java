@@ -1,4 +1,5 @@
 package manager;
+import Model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -7,39 +8,23 @@ public class ContactHelper extends HelperBase {
         super(manager);
     }
 
-    public void createcontact() {
+    public void createcontact(ContactData contact) {
         openContactPage();
         manager.driver.findElement(By.linkText("add new")).click();
         manager.driver.findElement(By.name("firstname")).click();
-        manager.driver.findElement(By.name("firstname")).sendKeys("1");
+        manager.driver.findElement(By.name("firstname")).sendKeys(contact.firstName());
         manager.driver.findElement(By.name("middlename")).click();
-        manager.driver.findElement(By.name("middlename")).sendKeys("1");
+        manager.driver.findElement(By.name("middlename")).sendKeys(contact.middleName());
         manager.driver.findElement(By.name("lastname")).click();
-        manager.driver.findElement(By.name("lastname")).sendKeys("1");
+        manager.driver.findElement(By.name("lastname")).sendKeys(contact.lastName());
         manager.driver.findElement(By.name("nickname")).click();
-        manager.driver.findElement(By.name("nickname")).sendKeys("1");
-        manager.driver.findElement(By.name("title")).click();
-        manager.driver.findElement(By.name("title")).sendKeys("1");
-        manager.driver.findElement(By.name("company")).click();
-        manager.driver.findElement(By.name("company")).sendKeys("1");
+        manager.driver.findElement(By.name("nickname")).sendKeys(contact.nickName());
         manager.driver.findElement(By.name("address")).click();
-        manager.driver.findElement(By.name("address")).sendKeys("1");
-        manager.driver.findElement(By.name("home")).click();
-        manager.driver.findElement(By.name("home")).sendKeys("1");
+        manager.driver.findElement(By.name("address")).sendKeys(contact.address());
         manager.driver.findElement(By.name("mobile")).click();
-        manager.driver.findElement(By.name("mobile")).sendKeys("1");
-        manager.driver.findElement(By.name("work")).click();
-        manager.driver.findElement(By.name("work")).sendKeys("1");
-        manager.driver.findElement(By.name("fax")).click();
-        manager.driver.findElement(By.name("fax")).sendKeys("1");
+        manager.driver.findElement(By.name("mobile")).sendKeys(contact.phonesHome());
         manager.driver.findElement(By.name("email")).click();
-        manager.driver.findElement(By.name("email")).sendKeys("1");
-        manager.driver.findElement(By.name("email2")).click();
-        manager.driver.findElement(By.name("email2")).sendKeys("1");
-        manager.driver.findElement(By.name("email3")).click();
-        manager.driver.findElement(By.name("email3")).sendKeys("1");
-        manager.driver.findElement(By.name("homepage")).click();
-        manager.driver.findElement(By.name("homepage")).sendKeys("1");
+        manager.driver.findElement(By.name("email")).sendKeys(contact.email());
         manager.driver.findElement(By.name("bday")).click();
         {
             WebElement dropdown = manager.driver.findElement(By.name("bday"));
@@ -75,4 +60,22 @@ public class ContactHelper extends HelperBase {
         manager.driver.findElement(By.name("selected[]")).click();
         manager.driver.findElement(By.cssSelector(".left:nth-child(8) > input")).click();
     }
+
+    public int getCount() {
+        openContactPage();
+        return manager.driver.findElements(By.name("selected[]")).size();
+    }
+    public void deleteALLContact() {
+        openContactPage();
+        selectALLContact();
+    }
+
+    private void selectALLContact() {
+        var checkboxes = manager.driver.findElements(By.name("selected[]"));
+        for(var checkbox : checkboxes){
+            checkbox.click();
+        }
+        manager.driver.findElement(By.cssSelector(".left:nth-child(8) > input")).click();
+    }
+
 }
