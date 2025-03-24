@@ -9,15 +9,11 @@ public class HelperBase {
         this.manager = manager;
     }
 
+
     public void openGroupsPage() {
         if (!manager.isElementPresent(By.name("new"))) {
             manager.driver.findElement(By.linkText("groups")).click();
         }
-    }
-
-    public boolean isGroupPresent() {
-        openGroupsPage();
-        return manager.isElementPresent(By.name("selected[]"));
     }
 
     public boolean isContactPresent(){
