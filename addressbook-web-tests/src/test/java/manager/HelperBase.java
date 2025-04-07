@@ -2,6 +2,9 @@ package manager;
 
 import org.openqa.selenium.By;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class HelperBase {
     protected final ApplicationManager manager;
 
@@ -9,21 +12,17 @@ public class HelperBase {
         this.manager = manager;
     }
 
-
-    public void openGroupsPage() {
-        if (!manager.isElementPresent(By.name("new"))) {
-            manager.driver.findElement(By.linkText("groups")).click();
-        }
+    protected void type(By locator, String text) {
+        click(locator);
+        manager.driver.findElement(locator).clear();
+        manager.driver.findElement(locator).sendKeys(text);
     }
 
-    public boolean isContactPresent(){
-        openContactPage();
-        return manager.isElementPresent(By.name("selected[]"));
+    protected void click(By locator) {
+        manager.driver.findElement(locator).click();
     }
 
-    public void openContactPage() {
-        if (!manager.isElementPresent(By.name("new"))) {
-            manager.driver.findElement(By.linkText("home")).click();
-        }
+    protected void attach(By locator, String file) {
+        manager.driver.findElement(locator).sendKeys(Paths.get(file).toAbsolutePath().toString());
     }
 }

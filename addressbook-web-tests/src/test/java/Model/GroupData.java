@@ -1,27 +1,27 @@
 package Model;
-public final class GroupData{
-    private final String group_name;
-    private final String group_header;
-    private final String group_footer;
+
+public record GroupData (String id, String name, String header, String footer) {
 
 
-    public GroupData(String group_name, String group_header, String group_footer){
-        this.group_name = group_name;
-        this.group_header = group_header;
-        this.group_footer = group_footer;
-   }
+    public GroupData(){
+        this("", "","","");
+    }
 
-   public String group_name(){
-        return group_name;
-   }
+    public GroupData withId(String id) {
+        return new GroupData(id, this.name, this.header, this.footer);
+    }
 
-   public String group_header(){
-        return group_header;
-   }
+    public GroupData withName(String name) {
+        return new GroupData(this.id, name, this.header, this.footer);
+    }
 
-   public String getGroup_footer(){
-        return group_footer;
-   }
+    public GroupData withHeader(String header) {
+        return new GroupData(this.id, this.name, header, this.footer);
+    }
 
-   }
+    public GroupData withFooter(String footer) {
+        return new GroupData(this.id, this.name, this.header, footer);
+    }
+}
+
 

@@ -1,43 +1,46 @@
 package Model;
 
-public final class ContactData {
-    private final String firstName;
-    private final String middleName;
-    private final String lastName;
-    private final String nickName;
-    private final String address;
-    private final String phonesHome;
-    private final String email;
+public record ContactData(String id, String firstName, String middleName, String lastName, String nickName,
+                          String address, String photo, String phonesHome, String email) {
 
-    public ContactData(String firstName, String middleName, String lastName, String nickName, String address, String phonesHome, String email) {
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.nickName = nickName;
-        this.address = address;
-        this.phonesHome = phonesHome;
-        this.email = email;
+    public ContactData() {
+        this("", "", "", "", "", "", "", "","");
+
     }
 
-    public String firstName() {
-        return firstName;
+    public ContactData withId(String id) {
+        return new ContactData(id, this.firstName, this.middleName, this.lastName, this.nickName, this.address, this.photo, this.phonesHome, this.email);
     }
-    public String middleName(){
-        return middleName;
+
+    public ContactData withFistName(String firstName) {
+        return new ContactData(this.id, firstName, this.middleName, this.lastName, this.nickName, this.address, this.photo, this.phonesHome, this.email);
     }
-    public String lastName(){
-        return lastName;
+
+    public ContactData withMiddleName(String middleName) {
+        return new ContactData(this.id, this.firstName, middleName, this.lastName, this.nickName, this.address, this.photo, this.phonesHome, this.email);
     }
-    public String nickName(){
-        return nickName;
+
+    public ContactData withLastName(String lastName) {
+        return new ContactData(this.id, this.firstName, this.middleName, lastName, this.nickName, this.address, this.photo, this.phonesHome, this.email);
     }
-    public String address(){
-        return address;
+
+    public ContactData withNickName(String nickName) {
+        return new ContactData(this.id, this.firstName, this.middleName, this.lastName, nickName, this.address, this.photo, this.phonesHome, this.email);
     }
-    public String phonesHome(){
-        return phonesHome;
+
+    public ContactData withAddress(String address) {
+        return new ContactData(this.id, this.firstName, this.middleName, this.lastName, this.nickName, address, this.photo, this.phonesHome, this.email);
     }
-    public String email(){
-        return email;
+
+    public ContactData withPhoto(String photo) {
+        return new ContactData(this.id, this.firstName, this.middleName, this.lastName, this.nickName, this.address, photo, this.phonesHome, this.email);
+    }
+
+    public ContactData withPhonesHome(String phonesHome) {
+        return new ContactData(this.id, this.firstName, this.middleName, this.lastName, this.nickName, this.address, this.photo, phonesHome, this.email);
+    }
+
+    public ContactData withEmail(String email) {
+        return new ContactData(this.id, this.firstName, this.middleName, this.lastName, this.nickName, this.address, this.photo, this.phonesHome, email);
     }
 }
