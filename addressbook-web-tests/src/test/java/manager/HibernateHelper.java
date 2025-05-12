@@ -10,6 +10,7 @@ import Model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HibernateHelper extends HelperBase {
 
@@ -29,11 +30,7 @@ public class HibernateHelper extends HelperBase {
     }
 
     static List<GroupData> convertList(List<GroupRecord> records){
-        List<GroupData> result = new ArrayList<>();
-        for (var record : records){
-            result.add(convert(record));
-        }
-        return result;
+        return records.stream().map(HibernateHelper::convert).collect(Collectors.toList());
     }
 
     private static GroupData convert(GroupRecord record) {
@@ -47,7 +44,7 @@ public class HibernateHelper extends HelperBase {
         }
         return new GroupRecord(Integer.parseInt(id), data.name(), data.header(), data.footer());
     }
-
+    @Step
     public List<GroupData> getGroupList(){
         return convertList(sessionFactory.fromSession(session -> {
             return session.createQuery("from GroupRecord", GroupRecord.class).list();
@@ -59,7 +56,7 @@ public class HibernateHelper extends HelperBase {
             return session.createQuery("select count (*) from GroupRecord", Long.class).getSingleResult();
         });
     }
-
+    @Step
     public void createGroup(GroupData groupData) {
         sessionFactory.inSession(session -> {
             session.getTransaction().begin();
@@ -69,11 +66,7 @@ public class HibernateHelper extends HelperBase {
     }
 
     static List<ContactData> converContactList(List<ContactRecord> records){
-        List<ContactData> result = new ArrayList<>();
-        for (var record : records){
-            result.add(convert(record));
-        }
-        return result;
+        return records.stream().map(HibernateHelper::convert).collect(Collectors.toList());
     }
     private static ContactData convert(ContactRecord record) {
         return new ContactData().withId(""+record.id)
@@ -81,7 +74,14 @@ public class HibernateHelper extends HelperBase {
                 .withMiddleName(record.middlename)
                 .withLastName(record.lastname)
                 .withNickName(record.nickname)
-                .withAddress(record.address);
+                .withAddress(record.address)
+                .withHome(record.home)
+                .withMobile(record.mobile)
+                .withWork(record.work)
+                .withSecondary(record.phone2)
+                .withEmail(record.email)
+                .withEmailSecond(record.email2)
+                .withEmailThree(record.email3);
     }
 
     private static ContactRecord convert(ContactData data) {
@@ -96,5 +96,11 @@ public class HibernateHelper extends HelperBase {
         return converContactList(sessionFactory.fromSession(session -> {
             return session.createQuery("from ContactRecord", ContactRecord.class).list();
         }));
+    }
+
+    public List<ContactData> getContactsInGroup(GroupData group) {
+        return sessionFactory.fromSession(session -> {
+            return converContactList (session.get(GroupRecord.class,group.id()).contacts);
+        });
     }
 }

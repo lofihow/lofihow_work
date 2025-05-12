@@ -1,9 +1,9 @@
 package tests;
 
+import Model.ContactData;
 import manager.TestBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import Model.ContactData;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -39,3 +39,4 @@ public class ContactModificationTests extends TestBase {
     }
 
 }
+
